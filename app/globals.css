@@ -46,3 +46,47 @@ body {
     scrollbar-width: none;  /* Firefox */
   }
 }
+
+
+.global-class-IoIosMore,
+.global-class-BsChat,
+.global-class-AiOutlineRetweet,
+.global-class-BsHeart,
+.global-class-IoIosStats,
+.global-class-twobtn {
+  color: #71767B;
+  display: inline-block;
+  padding: 0.75rem;
+  border-radius: 40%;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  width: fit-content;
+  height: fit-content;
+}
+
+.global-class-IoIosMore:hover {
+  color: #1D9BF0;
+  background-color: #0A171F;
+}
+.global-class-BsChat:hover {
+  color: #1D9BF0;
+  background-color: #0A171F;
+}
+.global-class-AiOutlineRetweet:hover {
+  color: #00BA7C;
+  background-color: #071A14;
+}
+.global-class-BsHeart:hover {
+  color: #F91880;
+  background-color: #200914;
+}
+.global-class-IoIosStats:hover {
+  color: #1D9BF0;
+  background-color: #0A171F;
+}
+.global-class-twobtn:hover {
+  color: #1D9BF0;
+  background-color: #0A171F;
+}
+
+
