@@ -47,46 +47,43 @@ body {
   }
 }
 
-
-.global-class-IoIosMore,
-.global-class-BsChat,
-.global-class-AiOutlineRetweet,
-.global-class-BsHeart,
+.global-class-PiDotsThreeOutlineFill,
+.global-class-RiChat1Line,
+.global-class-FaRetweet,
+.global-class-GoHeart,
 .global-class-IoIosStats,
 .global-class-twobtn {
   color: #71767B;
   display: inline-block;
   padding: 0.75rem;
-  border-radius: 40%;
+  border-radius: 50%;
   transition: background-color 0.3s ease, transform 0.3s ease;
   cursor: pointer;
   width: fit-content;
   height: fit-content;
+  font-size: 1.2rem;
+  stroke-width: 0.7px;
+}
+.global-class-RiChat1Line {
+  transform:scaleX(-1);
+  stroke-width: 0.3px;
 }
 
-.global-class-IoIosMore:hover {
-  color: #1D9BF0;
-  background-color: #0A171F;
-}
-.global-class-BsChat:hover {
-  color: #1D9BF0;
-  background-color: #0A171F;
-}
-.global-class-AiOutlineRetweet:hover {
-  color: #00BA7C;
-  background-color: #071A14;
-}
-.global-class-BsHeart:hover {
-  color: #F91880;
-  background-color: #200914;
-}
-.global-class-IoIosStats:hover {
-  color: #1D9BF0;
-  background-color: #0A171F;
-}
+.global-class-PiDotsThreeOutlineFill:hover,
+.global-class-RiChat1Line:hover,
+.global-class-IoIosStats:hover,
 .global-class-twobtn:hover {
   color: #1D9BF0;
   background-color: #0A171F;
+}
+
+.global-class-FaRetweet:hover {
+  color: #00BA7C;
+  background-color: #071A14;
+}
+.global-class-GoHeart:hover {
+  color: #F91880;
+  background-color: #200914;
 }
 
 
