@@ -4,7 +4,7 @@ import { IoIosStats } from "react-icons/io";
 import { RiShare2Line,RiChat1Line } from "react-icons/ri";
 import { IconContext } from "react-icons";
 import { PiDotsThreeOutlineFill } from "react-icons/pi";
-import { FaRetweet,FaRegHeart  } from "react-icons/fa6";
+import { FaRetweet} from "react-icons/fa6";
 import { GoBookmark,GoHeart  } from "react-icons/go";
 
 
