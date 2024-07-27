@@ -10,7 +10,7 @@ import { GoBookmark,GoHeart  } from "react-icons/go";
 
 const FeedCard: React.FC = ()=>{
     return (
-    <div className="border border-r-0 border-l-0 border-t-0 border-gray-600 border-b-[1px] pt-3 pr-4 pl-4">
+    <div className="border border-r-0 border-l-0 border-t-0 border-gray-600 border-b-[1px] cursor-pointer pt-3 pr-4 pl-4">
         <div className="grid grid-cols-12">
             <div className="col-span-1">
                 <Image className="rounded-full" src={'https://pbs.twimg.com/profile_images/1800082340405764096/GROpyGGE_400x400.jpg'} alt="user-img" height={50} width={50}/>
