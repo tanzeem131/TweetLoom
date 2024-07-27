@@ -28,7 +28,7 @@ const FeedCard: React.FC = ()=>{
                     <p>🎉Excited to share that I just completed my Google Analytics certification! 📈✨Implemented it on my portfolio website for enhanced insights and optimization. Ready to dive deeper into #DataDriven decisions!🚀#GoogleAnalytics #WebAnalytics #connect #developer #web3 #opentowork</p>
                 </div>
                 <div className="px-2 py-1">
-                    <Image className="rounded-lg" src={'https://pbs.twimg.com/media/GP4W0AHW8AAsZnO?format=jpg&name=medium'} alt="user-img" height={400} width={600}/>
+                    <Image className="rounded-lg" src={'https://pbs.twimg.com/media/GP4W0AHW8AAsZnO?format=jpg&name=medium'} priority={false} alt="user-img" height={400} width={600}/>
                 </div>
                 <div className="flex justify-between items-center text-lg pb-1">
                     <IconContext.Provider value={{className: "global-class-RiChat1Line" }}>

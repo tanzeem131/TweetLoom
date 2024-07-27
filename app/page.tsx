@@ -11,6 +11,7 @@ import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import toast from "react-hot-toast";
 import { graphqlClient } from "@/clients/api";
 import {verifyUserGoogleTokenQuery} from "@/graphql/query/user";
+import { useCurrentUser } from "@/hooks/user";
 
 interface XSideButton{
   title:string;
@@ -66,6 +67,9 @@ const sidebarMenuItems: XSideButton[]=[
 
 export default function Home() {
 
+  const {user} = useCurrentUser();
+  console.log(user);
+
   const handleLoginWithGoogle = useCallback(async (cred:CredentialResponse)=>{
     
     const googleToken = cred.credential;
@@ -75,6 +79,7 @@ export default function Home() {
     const {verifyGoogleToken} = await graphqlClient.request(verifyUserGoogleTokenQuery,{token: googleToken});
     
     toast.success("Verified Successfully");
+
     console.log(verifyGoogleToken);
 
     if(verifyGoogleToken) window.localStorage.setItem("__x_token",verifyGoogleToken);
