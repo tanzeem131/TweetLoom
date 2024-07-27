@@ -95,17 +95,17 @@ export default function Home() {
     <div>
       <div className="grid grid-cols-12 h-screen w-screen px-72">
         <div className="col-span-3 pl-9 relative">
-          <div className="text-3xl h-fit w-fit hover:bg-[#181818] rounded-full cursor-pointer p-[17.5px] transition-all">
+          <div className="text-3xl h-fit w-fit hover:bg-[#181818] rounded-full cursor-pointer p-[12px] transition-all">
             <BsTwitterX />
           </div>
           <div>
             <ul>
-            {sidebarMenuItems.map((item => <li className="w-fit cursor-pointer flex justify-start items-center p-[17px] hover:bg-[#181818] rounded-full gap-5" key={item.title}><span className="text-[26px]">{item.icon}</span><span className="text-xl">{item.title}</span></li>))}
+            {sidebarMenuItems.map((item => <li className="w-fit cursor-pointer flex justify-start items-center my-[11px] p-[12px] hover:bg-[#181818] rounded-full gap-5" key={item.title}><span className="text-[26px]">{item.icon}</span><span className="text-xl">{item.title}</span></li>))}
             </ul>
             <div className="pr-7">
               <button className="bg-[#1D9BF0] mt-5 p-[14px] font-semibold rounded-full w-[90%] text-[17px] hover:bg-[#1A8CD8]">Post</button>
             </div>
-            <div className="absolute bottom-3 p-[17px] cursor-pointer flex gap-3 items-center w-fit rounded-full hover:bg-[#181818]">
+            <div className="absolute bottom-3 p-[12px] cursor-pointer flex gap-3 items-center w-fit rounded-full hover:bg-[#181818]">
               {user && user.profileImageUrl && <Image className="rounded-full" src={user?.profileImageUrl} alt='user-image' height={40} width={40}/>}
               {user && user.firstName && <p className="">{user.firstName}</p>}
               {user && user.firstName && <div className="pl-28"><PiDotsThreeOutlineFill /></div>}
