@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { BsTwitterX,BsSearch,BsSlashSquare,BsBookmark,BsPeople,BsPerson} from "react-icons/bs";
 import { GoBell,GoHome } from "react-icons/go";
 import { PiDotsThreeOutlineFill } from "react-icons/pi";
@@ -17,6 +17,8 @@ import { useCurrentUser } from "@/hooks/user";
 import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import { IconContext } from "react-icons";
+import { useCreateTweet, useGetAllTweets } from "@/hooks/tweet";
+import { Tweet } from "@/gql/graphql";
 
 interface XSideButton{
   title:string;
@@ -73,8 +75,10 @@ const sidebarMenuItems: XSideButton[]=[
 export default function Home() {
   
   const {user} = useCurrentUser();
+  const {tweets} = useGetAllTweets();
+  const {mutate}=useCreateTweet();
   const queryClient = useQueryClient()
-  console.log(user);
+  const [content,setContent]=useState('');
 
   const handleSelectImage = useCallback(()=>{
     const input = document.createElement("input");
@@ -82,6 +86,12 @@ export default function Home() {
     input.setAttribute("accept","image/*");
     input.click();
   },[]);
+
+  const handleCreateTweet=useCallback(()=>{
+    mutate({
+      content,
+    })
+  },[content,mutate])
 
   const handleLoginWithGoogle = useCallback(async (cred:CredentialResponse)=>{
     
@@ -128,6 +138,8 @@ export default function Home() {
             </div>
             <div className="col-span-11">
               <textarea
+              value={content}
+              onChange={e=>setContent(e.target.value)}
               id="myTextarea"
               placeholder="What is happening?!"
               className="w-full bg-transparent placeholder-opacity-75 px-1 pt-2 placeholder:text-xl  font-light text-xl border-b-[1px] border-gray-600 focus:outline-none overflow-hidden resize-none"
@@ -136,15 +148,11 @@ export default function Home() {
               <IconContext.Provider value={{className: "global-class-BiImageAlt"}}>
                 <CiImageOn onClick={handleSelectImage}/>
               </IconContext.Provider>
-              <button className="bg-[#0F4E78] text-[#808080] font-semibold text-sm py-2 px-4 rounded-full">Post</button>
+              <button onClick={handleCreateTweet} className="bg-[#0F4E78] text-[#808080] font-semibold text-sm py-2 px-4 rounded-full">Post</button>
             </div>
             </div>
           </div>
-          <FeedCard/>
-          <FeedCard/>
-          <FeedCard/>
-          <FeedCard/>
-          <FeedCard/>
+          {tweets?.map((tweet) => tweet ? <FeedCard key={tweet?.id} data={tweet as Tweet}/>:null)}
         </div>
         <div className="col-span-3 px-7 py-3">
             {!user && <div className="border-[1px] rounded-2xl border-gray-600 px-4 py-1 w-[350px]">
