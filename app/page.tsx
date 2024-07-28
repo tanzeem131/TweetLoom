@@ -4,8 +4,9 @@ import React, { useCallback } from "react";
 import { BsTwitterX,BsSearch,BsSlashSquare,BsBookmark,BsPeople,BsPerson} from "react-icons/bs";
 import { GoBell,GoHome } from "react-icons/go";
 import { PiDotsThreeOutlineFill } from "react-icons/pi";
-import { BiEnvelope } from "react-icons/bi";
+import { BiEnvelope, BiImageAlt } from "react-icons/bi";
 import { RiFileListLine } from "react-icons/ri";
+import { CiImageOn } from "react-icons/ci";
 import { CgMoreO } from "react-icons/cg";
 import FeedCard from "@/components/FeedCard";
 import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
@@ -15,6 +16,7 @@ import {verifyUserGoogleTokenQuery} from "@/graphql/query/user";
 import { useCurrentUser } from "@/hooks/user";
 import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
+import { IconContext } from "react-icons";
 
 interface XSideButton{
   title:string;
@@ -74,6 +76,13 @@ export default function Home() {
   const queryClient = useQueryClient()
   console.log(user);
 
+  const handleSelectImage = useCallback(()=>{
+    const input = document.createElement("input");
+    input.setAttribute("type","file");
+    input.setAttribute("accept","image/*");
+    input.click();
+  },[]);
+
   const handleLoginWithGoogle = useCallback(async (cred:CredentialResponse)=>{
     
     const googleToken = cred.credential;
@@ -113,6 +122,25 @@ export default function Home() {
           </div>
         </div>
         <div className="col-span-6 border-r-[1px] border-l-[1px] border-gray-600 h-screen overflow-scroll scrollbar-hide">
+          <div className="grid grid-cols-12 gap-4 p-4">
+            <div className="col-span-1">
+              {user && user.profileImageUrl && <Image className="rounded-full hover:cursor-pointer" src={user.profileImageUrl} alt="user-image" width={50} height={50}/>}
+            </div>
+            <div className="col-span-11">
+              <textarea
+              id="myTextarea"
+              placeholder="What is happening?!"
+              className="w-full bg-transparent placeholder-opacity-75 px-1 pt-2 placeholder:text-xl  font-light text-xl border-b-[1px] border-gray-600 focus:outline-none overflow-hidden resize-none"
+            ></textarea>
+            <div className="mt-2 flex justify-between items-center">
+              <IconContext.Provider value={{className: "global-class-BiImageAlt"}}>
+                <CiImageOn onClick={handleSelectImage}/>
+              </IconContext.Provider>
+              <button className="bg-[#0F4E78] text-[#808080] font-semibold text-sm py-2 px-4 rounded-full">Post</button>
+            </div>
+            </div>
+          </div>
+          <FeedCard/>
           <FeedCard/>
           <FeedCard/>
           <FeedCard/>

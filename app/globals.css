@@ -45,6 +45,7 @@ body {
   }
 }
 
+.global-class-BiImageAlt,
 .global-class-PiDotsThreeOutlineFill,
 .global-class-RiChat1Line,
 .global-class-FaRetweet,
@@ -66,7 +67,14 @@ body {
   transform:scaleX(-1);
   stroke-width: 0.3px;
 }
+.global-class-BiImageAlt{
+  color: #1D9BF0;
+  font-size: 1.25rem ;
+  line-height: 1.75rem;
+  stroke-width: 0.5px;
+}
 
+.global-class-BiImageAlt:hover,
 .global-class-PiDotsThreeOutlineFill:hover,
 .global-class-RiChat1Line:hover,
 .global-class-IoIosStats:hover,
