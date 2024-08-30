@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 import {
   BsTwitterX,
   BsSearch,
@@ -21,58 +21,13 @@ import { verifyUserGoogleTokenQuery } from "@/graphql/query/user";
 import { useCurrentUser } from "@/hooks/user";
 import { useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
+import Link from "next/link";
 
 interface XSideButton {
   title: string;
   icon: React.ReactNode;
+  link: string;
 }
-
-const sidebarMenuItems: XSideButton[] = [
-  {
-    title: "Home",
-    icon: <GoHome />,
-  },
-  {
-    title: "Explore",
-    icon: <BsSearch />,
-  },
-  {
-    title: "Notifications",
-    icon: <GoBell />,
-  },
-  {
-    title: "Messages",
-    icon: <BiEnvelope />,
-  },
-  {
-    title: "Grok",
-    icon: <BsSlashSquare />,
-  },
-  {
-    title: "Lists",
-    icon: <RiFileListLine />,
-  },
-  {
-    title: "Bookmarks",
-    icon: <BsBookmark />,
-  },
-  {
-    title: "Communities",
-    icon: <BsPeople />,
-  },
-  {
-    title: "Premium",
-    icon: <BsTwitterX />,
-  },
-  {
-    title: "Profile",
-    icon: <BsPerson />,
-  },
-  {
-    title: "More",
-    icon: <CgMoreO />,
-  },
-];
 
 interface TweetLoomProps {
   children: React.ReactNode;
@@ -81,6 +36,66 @@ interface TweetLoomProps {
 const TweetLoomLayout: React.FC<TweetLoomProps> = (props) => {
   const { user } = useCurrentUser();
   const queryClient = useQueryClient();
+  const sidebarMenuItems: XSideButton[] = useMemo(
+    () => [
+      {
+        title: "Home",
+        icon: <GoHome />,
+        link: "/",
+      },
+      {
+        title: "Explore",
+        icon: <BsSearch />,
+        link: "/",
+      },
+      {
+        title: "Notifications",
+        icon: <GoBell />,
+        link: "/",
+      },
+      {
+        title: "Messages",
+        icon: <BiEnvelope />,
+        link: "/",
+      },
+      {
+        title: "Grok",
+        icon: <BsSlashSquare />,
+        link: "/",
+      },
+      {
+        title: "Lists",
+        icon: <RiFileListLine />,
+        link: "/",
+      },
+      {
+        title: "Bookmarks",
+        icon: <BsBookmark />,
+        link: "/",
+      },
+      {
+        title: "Communities",
+        icon: <BsPeople />,
+        link: "/",
+      },
+      {
+        title: "Premium",
+        icon: <BsTwitterX />,
+        link: "/",
+      },
+      {
+        title: "Profile",
+        icon: <BsPerson />,
+        link: `/${user?.id}`,
+      },
+      {
+        title: "More",
+        icon: <CgMoreO />,
+        link: "/",
+      },
+    ],
+    [user?.id]
+  );
 
   const handleLoginWithGoogle = useCallback(
     async (cred: CredentialResponse) => {
@@ -121,12 +136,16 @@ const TweetLoomLayout: React.FC<TweetLoomProps> = (props) => {
           <div>
             <ul>
               {sidebarMenuItems.map((item) => (
-                <li
-                  className="w-fit cursor-pointer flex sm:justify-start items-center my-[11px] p-[8px] sm:p-[12px] hover:bg-[#181818] rounded-full gap-5"
-                  key={item.title}
-                >
-                  <span className="text-[26px]">{item.icon}</span>
-                  <span className="hidden sm:inline text-xl">{item.title}</span>
+                <li key={item.title}>
+                  <Link
+                    className="w-fit cursor-pointer flex sm:justify-start items-center my-[11px] p-[8px] sm:p-[12px] hover:bg-[#181818] rounded-full gap-5"
+                    href={item.link}
+                  >
+                    <span className="text-[26px]">{item.icon}</span>
+                    <span className="hidden sm:inline text-xl">
+                      {item.title}
+                    </span>
+                  </Link>
                 </li>
               ))}
             </ul>
